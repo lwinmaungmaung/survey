@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\UserLogin;
+use App\Http\Controllers\UserRegister;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::name('start')->get('/',static function(){
+    return response()->json(['current_date' => now()->toDateString()]);
+});
+
+Route::name('user.register')->post('/register', UserRegister::class);
+Route::name('user.login')->post('/login', UserLogin::class);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    return new UserResource($request->user());
 });
