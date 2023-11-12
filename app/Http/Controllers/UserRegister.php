@@ -13,6 +13,9 @@ class UserRegister extends Controller
      */
     public function __invoke(UserRegistrationRequest $request)
     {
+        if(User::where('email',$request->email)->exists()){
+            return response()->json(['message' => 'User already exists.'],409);
+        }
         $user = User::create($request->validated());
         return response()->json(['message' => 'User registered successfully.'],201);
     }
