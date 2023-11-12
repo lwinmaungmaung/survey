@@ -85,7 +85,7 @@ class FormController extends Controller
     /**
      * @throws Throwable
      */
-    public function public_submit(Request $request, Form $form,FormService $formService)
+    public function public_submit(Request $request, Form $form,FormService $formService): ?JsonResponse
     {
         try{
             $status = $formService->submitForm($request,$form);

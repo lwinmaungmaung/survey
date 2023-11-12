@@ -2,10 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Form;
 use App\Models\FormResponse;
 use App\Models\User;
-use App\Observers\FormObserver;
 use App\Observers\FormResponseObserver;
 use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
