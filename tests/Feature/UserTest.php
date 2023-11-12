@@ -71,14 +71,20 @@ it('can create a form and database accessibility with register user', function()
             'name' => 'test',
             'description' => 'test',
             'fields' => [
-                ['name' => 'test', 'type' => 'text', 'required' => true],
-                ['name' => 'test2', 'type' => 'radio', 'required' => false, 'options' => ['test', 'test2'],'default' => 'test2']
+                ['name' => 'Enter Your Name', 'type' => 'text', 'required' => true],
+                ['name' => 'test2', 'type' => 'radio', 'required' => true, 'options' => ['test', 'test2'],'default' => 'test2'],
+                ['name' => 'test3', 'type' => 'checkbox', 'required' => true, 'options' => ['test', 'test2'],'default' => 'test2'],
+                ['name' => 'test4', 'type' => 'select', 'required' => true, 'options' => ['test', 'test2'],'default' => 'test2'],
+                ['name' => 'test5', 'type' => 'textarea', 'required' => true],
             ]
         ]
     );
     $response->assertStatus(201);
     $response->assertJson(['message' => 'Form created successfully.']);
     $this->assertDatabaseHas('forms', ['name' => 'test', 'description' => 'test']);
-    $this->assertDatabaseHas('form_fields', ['name' => 'test', 'type' => 'text', 'required' => true]);
-    $this->assertDatabaseHas('form_fields', ['name' => 'test2', 'type' => 'radio', 'required' => false,'options' => json_encode(['test', 'test2'], JSON_THROW_ON_ERROR),'default' => 'test2']);
+    $this->assertDatabaseHas('form_fields', ['name' => 'Enter Your Name', 'type' => 'text', 'required' => true]);
+    $this->assertDatabaseHas('form_fields', ['name' => 'test2', 'type' => 'radio', 'required' => true,'options' => json_encode(['test', 'test2'], JSON_THROW_ON_ERROR),'default' => 'test2']);
+    $this->assertDatabaseHas('form_fields', ['name' => 'test3', 'type' => 'checkbox', 'required' => true,'options' => json_encode(['test', 'test2'], JSON_THROW_ON_ERROR),'default' => 'test2']);
+    $this->assertDatabaseHas('form_fields', ['name' => 'test4', 'type' => 'select', 'required' => true,'options' => json_encode(['test', 'test2'], JSON_THROW_ON_ERROR),'default' => 'test2']);
+    $this->assertDatabaseHas('form_fields', ['name' => 'test5', 'type' => 'textarea', 'required' => true]);
 });

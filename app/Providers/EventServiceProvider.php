@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\Form;
+use App\Models\FormResponse;
 use App\Models\User;
 use App\Observers\FormObserver;
+use App\Observers\FormResponseObserver;
 use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -30,6 +32,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         User::observe(UserObserver::class);
+        FormResponse::observe(FormResponseObserver::class);
     }
 
     /**

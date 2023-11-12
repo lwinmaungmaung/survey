@@ -42,4 +42,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function forms(){
+        return $this->hasMany(Form::class);
+    }
+    public function formResponses(){
+        return $this->hasManyThrough(FormResponse::class, Form::class);
+    }
 }
+

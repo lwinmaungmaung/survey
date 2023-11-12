@@ -26,8 +26,10 @@ Route::name('user.register')->post('/register', UserRegister::class);
 Route::name('user.login')->post('/login', UserLogin::class);
 
 Route::middleware('auth:sanctum')->group(static function(){
-    Route::name('user.profile')->get('/user', static function(Request $request){
-        return new UserResource($request->user());
+    Route::prefix('/v1')->group(static function(){
+        Route::name('user.profile')->get('/user', static function(Request $request){
+            return new UserResource($request->user());
+        });
+        Route::apiResource('form', FormController::class);
     });
-    Route::apiResource('form', FormController::class);
 });

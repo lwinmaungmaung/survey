@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/form/{form:slug}', [FormController::class,'show'])->name('public.form.show');
+Route::post('/form/{form:slug}', [FormController::class,'public_submit'])->name('public.form.submit');
